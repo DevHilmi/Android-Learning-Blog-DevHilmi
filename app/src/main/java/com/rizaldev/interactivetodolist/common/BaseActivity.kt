@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState, VM : BaseViewModel<INTENT, ACTION, STATE>>(
+abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState, VM : BaseViewModel<INTENT, ACTION, STATE>, T : ViewBinding>(
     private val modelClass: Class<VM>
 ) : RootBaseActivity(), IViewRenderer<STATE> {
 
@@ -13,7 +13,7 @@ abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
 
     val mState get() = viewState
 
-    private lateinit var binding: ViewBinding
+    protected lateinit var binding: T
 
     private val viewModel: VM by lazy {
         viewModelProvider(
@@ -35,7 +35,7 @@ abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
         initEvent()
     }
 
-    abstract fun getLayoutViewBinding(): ViewBinding
+    abstract fun getLayoutViewBinding(): T
     abstract fun initUi()
     abstract fun initData()
     abstract fun initEvent()
@@ -44,8 +44,4 @@ abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
         viewModel.dispatchIntent(intent)
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T> getViewBinding(): T {
-        return binding as T
-    }
 }

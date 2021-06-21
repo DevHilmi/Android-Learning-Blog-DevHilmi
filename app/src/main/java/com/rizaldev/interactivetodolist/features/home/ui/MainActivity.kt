@@ -8,7 +8,9 @@ import com.rizaldev.interactivetodolist.features.home.MainState
 import com.rizaldev.interactivetodolist.features.home.MainViewModel
 
 class MainActivity :
-    BaseActivity<MainIntent, MainAction, MainState, MainViewModel>(MainViewModel::class.java) {
+    BaseActivity<MainIntent, MainAction, MainState, MainViewModel, ActivityMainBinding>(
+        MainViewModel::class.java
+    ) {
 
     override fun getLayoutViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
@@ -32,7 +34,7 @@ class MainActivity :
             }
 
             is MainState.ResultAllTodo -> {
-                getViewBinding<ActivityMainBinding>().textTitle.text = state.data[0]
+                binding.textTitle.text = state.data[0]
             }
 
             is MainState.Exception -> {
