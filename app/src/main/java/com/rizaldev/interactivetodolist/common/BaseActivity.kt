@@ -1,11 +1,10 @@
 package com.rizaldev.interactivetodolist.common
 
 import android.os.Bundle
-import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState, VM : BaseViewModel<INTENT, ACTION, STATE>, T : ViewBinding>(
+abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState,
+        VM : BaseViewModel<INTENT, ACTION, STATE>, T : ViewBinding>(
     private val modelClass: Class<VM>
 ) : RootBaseActivity(), IViewRenderer<STATE> {
 
