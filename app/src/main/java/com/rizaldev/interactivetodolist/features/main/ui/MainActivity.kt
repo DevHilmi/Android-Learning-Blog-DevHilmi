@@ -1,13 +1,13 @@
-package com.rizaldev.interactivetodolist.features.home
+package com.rizaldev.interactivetodolist.features.main.ui
 
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.rizaldev.interactivetodolist.common.base.BaseActivity
 import com.rizaldev.interactivetodolist.databinding.ActivityMainBinding
-import com.rizaldev.interactivetodolist.features.home.ui.MainAction
-import com.rizaldev.interactivetodolist.features.home.ui.MainIntent
-import com.rizaldev.interactivetodolist.features.home.ui.MainState
-import com.rizaldev.interactivetodolist.features.home.ui.MainViewModel
+import com.rizaldev.interactivetodolist.features.home.ui.HomeFragment
+import com.rizaldev.interactivetodolist.features.settings.ui.SettingsFragment
 
 class MainActivity :
     BaseActivity<MainIntent, MainAction, MainState, MainViewModel, ActivityMainBinding>(
@@ -24,6 +24,7 @@ class MainActivity :
     }
 
     override fun initUi() {
+        binding.viewPagerMain.adapter = MainPagerAdapter(this)
     }
 
     override fun initData() {
@@ -50,5 +51,24 @@ class MainActivity :
         }
     }
 
+    class MainPagerAdapter(fragmentActivity: FragmentActivity) :
+        FragmentStateAdapter(fragmentActivity) {
+
+        override fun getItemCount(): Int {
+            return NUM_PAGES
+        }
+
+        override fun createFragment(position: Int): Fragment {
+            return when (position) {
+                0 -> HomeFragment()
+                1 -> SettingsFragment()
+                else -> HomeFragment()
+            }
+        }
+    }
+
+    companion object {
+        private const val NUM_PAGES = 2
+    }
 
 }

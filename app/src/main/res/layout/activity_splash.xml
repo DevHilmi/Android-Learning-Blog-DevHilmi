@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash_gradient_background"
-    tools:context=".features.splash.SplashActivity">
+    tools:context=".features.splash.ui.SplashActivity">
 
     <com.rizaldev.interactivetodolist.common.ui.CircularImageView
         android:id="@+id/blogImage"

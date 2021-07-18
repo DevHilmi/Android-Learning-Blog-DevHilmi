@@ -1,4 +1,4 @@
-package com.rizaldev.interactivetodolist.features.home.ui
+package com.rizaldev.interactivetodolist.features.main.ui
 
 import com.rizaldev.interactivetodolist.common.base.ViewState
 

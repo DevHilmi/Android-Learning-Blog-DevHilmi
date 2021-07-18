@@ -3,7 +3,6 @@ package com.rizaldev.interactivetodolist.common.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
-import com.rizaldev.interactivetodolist.features.home.ui.MainViewModel
 
 abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState,
         VM : BaseViewModel<INTENT, ACTION, STATE>, T : ViewBinding>(
