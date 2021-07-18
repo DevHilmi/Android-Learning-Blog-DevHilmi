@@ -8,15 +8,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.InteractiveToDoList">
-        <activity android:name=".features.detail.DetailActivity"/>
-        <activity android:name=".features.home.ui.MainActivity">
+        android:theme="@style/Theme.InteractiveToDoList.NoActionBar">
+        <activity
+            android:name=".features.splash.SplashActivity"
+            android:theme="@style/Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".features.detail.DetailActivity" />
+        <activity android:name=".features.home.MainActivity" />
     </application>
 
 </manifest>

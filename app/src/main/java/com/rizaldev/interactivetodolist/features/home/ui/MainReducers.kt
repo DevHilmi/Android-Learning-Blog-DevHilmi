@@ -1,4 +1,4 @@
-package com.rizaldev.interactivetodolist.features.home
+package com.rizaldev.interactivetodolist.features.home.ui
 
 
 fun List<String>.reduce(): MainState {

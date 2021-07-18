@@ -1,4 +1,4 @@
-package com.rizaldev.interactivetodolist.common
+package com.rizaldev.interactivetodolist.common.base
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel

@@ -1,6 +1,6 @@
-package com.rizaldev.interactivetodolist.features.home
+package com.rizaldev.interactivetodolist.features.home.ui
 
-import com.rizaldev.interactivetodolist.common.ViewState
+import com.rizaldev.interactivetodolist.common.base.ViewState
 
 sealed class MainState : ViewState {
     object Loading : MainState()

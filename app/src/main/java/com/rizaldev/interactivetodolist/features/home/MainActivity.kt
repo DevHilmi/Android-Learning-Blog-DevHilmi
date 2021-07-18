@@ -1,11 +1,13 @@
-package com.rizaldev.interactivetodolist.features.home.ui
+package com.rizaldev.interactivetodolist.features.home
 
-import com.rizaldev.interactivetodolist.common.BaseActivity
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
+import com.rizaldev.interactivetodolist.common.base.BaseActivity
 import com.rizaldev.interactivetodolist.databinding.ActivityMainBinding
-import com.rizaldev.interactivetodolist.features.home.MainAction
-import com.rizaldev.interactivetodolist.features.home.MainIntent
-import com.rizaldev.interactivetodolist.features.home.MainState
-import com.rizaldev.interactivetodolist.features.home.MainViewModel
+import com.rizaldev.interactivetodolist.features.home.ui.MainAction
+import com.rizaldev.interactivetodolist.features.home.ui.MainIntent
+import com.rizaldev.interactivetodolist.features.home.ui.MainState
+import com.rizaldev.interactivetodolist.features.home.ui.MainViewModel
 
 class MainActivity :
     BaseActivity<MainIntent, MainAction, MainState, MainViewModel, ActivityMainBinding>(
@@ -14,6 +16,11 @@ class MainActivity :
 
     override fun getLayoutViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    override fun getViewModelImp(): MainViewModel {
+        val viewModel: MainViewModel by viewModels()
+        return viewModel
     }
 
     override fun initUi() {
@@ -34,7 +41,7 @@ class MainActivity :
             }
 
             is MainState.ResultAllTodo -> {
-                binding.textTitle.text = state.data[0]
+
             }
 
             is MainState.Exception -> {
@@ -42,5 +49,6 @@ class MainActivity :
             }
         }
     }
+
 
 }

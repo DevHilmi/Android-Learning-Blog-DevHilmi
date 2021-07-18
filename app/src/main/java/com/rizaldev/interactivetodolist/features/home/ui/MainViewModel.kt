@@ -1,6 +1,6 @@
-package com.rizaldev.interactivetodolist.features.home
+package com.rizaldev.interactivetodolist.features.home.ui
 
-import com.rizaldev.interactivetodolist.common.BaseViewModel
+import com.rizaldev.interactivetodolist.common.base.BaseViewModel
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor() : BaseViewModel<MainIntent, MainAction, MainState>() {

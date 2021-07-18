@@ -1,12 +1,14 @@
-package com.rizaldev.interactivetodolist.common
+package com.rizaldev.interactivetodolist.common.base
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.rizaldev.interactivetodolist.features.home.ui.MainViewModel
 
 abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState,
         VM : BaseViewModel<INTENT, ACTION, STATE>, T : ViewBinding>(
     private val modelClass: Class<VM>
-) : RootBaseActivity(), IViewRenderer<STATE> {
+) : AppCompatActivity(), IViewRenderer<STATE> {
 
     private lateinit var viewState: STATE
 
@@ -14,19 +16,12 @@ abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
 
     protected lateinit var binding: T
 
-    private val viewModel: VM by lazy {
-        viewModelProvider(
-            this.viewModelFactory,
-            modelClass.kotlin
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = getLayoutViewBinding()
         setContentView(binding.root)
         initUi()
-        viewModel.state.observe(this, {
+        getViewModelImp().state.observe(this, {
             viewState = it
             render(it)
         })
@@ -35,12 +30,13 @@ abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
     }
 
     abstract fun getLayoutViewBinding(): T
+    abstract fun getViewModelImp(): VM
     abstract fun initUi()
     abstract fun initData()
     abstract fun initEvent()
 
     fun dispatchIntent(intent: INTENT) {
-        viewModel.dispatchIntent(intent)
+        getViewModelImp().dispatchIntent(intent)
     }
 
 }
