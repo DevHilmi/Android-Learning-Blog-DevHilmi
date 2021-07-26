@@ -1,6 +1,7 @@
 package com.rizaldev.interactivetodolist.features.splash.ui
 
 import android.content.Intent
+import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.rizaldev.interactivetodolist.common.base.BaseActivity
@@ -14,10 +15,6 @@ class SplashActivity :
     BaseActivity<SplashIntent, SplashAction, SplashState, SplashViewModel, ActivitySplashBinding>(
         SplashViewModel::class.java
     ) {
-
-    override fun getLayoutViewBinding(): ActivitySplashBinding {
-        return ActivitySplashBinding.inflate(layoutInflater)
-    }
 
     override fun getViewModelImp(): SplashViewModel {
         val viewModel: SplashViewModel by viewModels()
@@ -48,5 +45,8 @@ class SplashActivity :
             finish()
         }
     }
+
+    override val bindingInflater: (LayoutInflater) -> ActivitySplashBinding
+        get() = ActivitySplashBinding::inflate
 
 }

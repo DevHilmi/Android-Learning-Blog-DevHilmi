@@ -1,11 +1,12 @@
 package com.rizaldev.interactivetodolist.common.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState,
-        VM : BaseViewModel<INTENT, ACTION, STATE>, T : ViewBinding>(
+        VM : BaseViewModel<INTENT, ACTION, STATE>, VB : ViewBinding>(
     private val modelClass: Class<VM>
 ) : AppCompatActivity(), IViewRenderer<STATE> {
 
@@ -13,11 +14,17 @@ abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
 
     val mState get() = viewState
 
-    protected lateinit var binding: T
+    private var _binding: ViewBinding? = null
+
+    abstract val bindingInflater: (LayoutInflater) -> VB
+
+    @Suppress("UNCHECKED_CAST")
+    protected val binding: VB
+        get() = _binding as VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = getLayoutViewBinding()
+        _binding = bindingInflater.invoke(layoutInflater)
         setContentView(binding.root)
         initUi()
         getViewModelImp().state.observe(this, {
@@ -28,7 +35,6 @@ abstract class BaseActivity<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
         initEvent()
     }
 
-    abstract fun getLayoutViewBinding(): T
     abstract fun getViewModelImp(): VM
     abstract fun initUi()
     abstract fun initData()

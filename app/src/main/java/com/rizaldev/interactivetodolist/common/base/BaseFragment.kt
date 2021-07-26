@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState,
-        VM : BaseViewModel<INTENT, ACTION, STATE>, T : ViewBinding>(
+        VM : BaseViewModel<INTENT, ACTION, STATE>, VB : ViewBinding>(
     private val modelClass: Class<VM>
 ) : Fragment(), IViewRenderer<STATE> {
 
@@ -16,15 +16,23 @@ abstract class BaseFragment<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
 
     val mState get() = viewState
 
-    protected lateinit var binding: T
+    private var _binding: ViewBinding? = null
 
+    abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
+
+    @Suppress("UNCHECKED_CAST")
+    protected val binding: VB
+        get() = _binding as VB
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        super.onCreate(savedInstanceState)
-        binding = getLayoutViewBinding()
+        _binding = bindingInflater.invoke(inflater, container, false)
+        return requireNotNull(_binding).root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi()
         getViewModelImp().state.observe(viewLifecycleOwner, {
             viewState = it
@@ -32,10 +40,8 @@ abstract class BaseFragment<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
         })
         initData()
         initEvent()
-        return getLayoutViewBinding().root
     }
 
-    abstract fun getLayoutViewBinding(): T
     abstract fun getViewModelImp(): VM
     abstract fun initUi()
     abstract fun initData()

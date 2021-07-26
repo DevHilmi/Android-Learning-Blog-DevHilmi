@@ -9,14 +9,10 @@ import com.rizaldev.interactivetodolist.R
 import com.rizaldev.interactivetodolist.common.base.BaseFragment
 import com.rizaldev.interactivetodolist.databinding.FragmentHomeBinding
 
-class HomeFragment :
+class HomeFragment() :
     BaseFragment<HomeIntent, HomeAction, HomeState, HomeViewModel, FragmentHomeBinding>(
         HomeViewModel::class.java
     ) {
-
-    override fun getLayoutViewBinding(): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(layoutInflater)
-    }
 
     override fun getViewModelImp(): HomeViewModel {
         val viewModel by viewModels<HomeViewModel>()
@@ -30,6 +26,7 @@ class HomeFragment :
         binding.recyclerContent.layoutManager = linearLayoutManager
         binding.recyclerContent.adapter = adapter
         adapter.notifyDataSetChanged()
+        binding.textAbout.text = "Miaw miaw miaw"
     }
 
     override fun initData() {
@@ -41,6 +38,9 @@ class HomeFragment :
 
     override fun render(state: HomeState) {
     }
+
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding
+        get() = FragmentHomeBinding::inflate
 
     class HomeContentAdapter(private val dataset: List<String>) :
         RecyclerView.Adapter<HomeContentViewHolder>() {
@@ -59,4 +59,6 @@ class HomeFragment :
             return dataset.size
         }
     }
+
+
 }

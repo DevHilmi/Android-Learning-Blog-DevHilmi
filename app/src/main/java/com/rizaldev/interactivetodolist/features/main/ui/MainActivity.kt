@@ -1,12 +1,11 @@
 package com.rizaldev.interactivetodolist.features.main.ui
 
+import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayoutMediator
 import com.rizaldev.interactivetodolist.R
 import com.rizaldev.interactivetodolist.common.base.BaseActivity
 import com.rizaldev.interactivetodolist.databinding.ActivityMainBinding
@@ -17,10 +16,6 @@ class MainActivity :
     BaseActivity<MainIntent, MainAction, MainState, MainViewModel, ActivityMainBinding>(
         MainViewModel::class.java
     ) {
-
-    override fun getLayoutViewBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
-    }
 
     override fun getViewModelImp(): MainViewModel {
         val viewModel: MainViewModel by viewModels()
@@ -97,5 +92,8 @@ class MainActivity :
     companion object {
         private const val NUM_PAGES = 2
     }
+
+    override val bindingInflater: (LayoutInflater) -> ActivityMainBinding
+        get() = ActivityMainBinding::inflate
 
 }
