@@ -27,6 +27,7 @@ class HomeFragment() :
         binding.recyclerContent.adapter = adapter
         adapter.notifyDataSetChanged()
         binding.textAbout.text = "Miaw miaw miaw"
+        binding.markdownView.loadMarkdownFromUrl("https://raw.githubusercontent.com/DevHilmi/Learning-Blog-Source/main/medium_transforming_pr_format.md")
     }
 
     override fun initData() {
