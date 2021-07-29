@@ -37,16 +37,7 @@ class MainActivity :
                 else -> false
             }
         }
-        binding.viewPagerMain.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                when (position) {
-                    0 -> binding.bottomNavigation.selectedItemId = R.id.homePage
-                    1 -> binding.bottomNavigation.selectedItemId = R.id.settingPage
-                }
-            }
-        })
+        binding.viewPagerMain.isUserInputEnabled = false
     }
 
     override fun initData() {
