@@ -5,12 +5,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.rizaldev.interactivetodolist.R
+import com.bumptech.glide.Glide
 import com.rizaldev.interactivetodolist.common.base.BaseFragment
 import com.rizaldev.interactivetodolist.databinding.FragmentHomeBinding
+import com.rizaldev.interactivetodolist.databinding.ViewHomeContentBinding
 import com.rizaldev.interactivetodolist.features.home.domain.model.Content
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 class HomeFragment :
     BaseFragment<HomeIntent, HomeAction, HomeState, HomeViewModel, FragmentHomeBinding>(
@@ -59,16 +58,22 @@ class HomeFragment :
     class HomeContentAdapter :
         RecyclerView.Adapter<HomeContentViewHolder>() {
 
-        val content = mutableListOf<Content>()
+        private val content = mutableListOf<Content>()
+        private lateinit var binding: ViewHomeContentBinding
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeContentViewHolder {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.view_home_content, parent, false)
-            return HomeContentViewHolder(view)
+            binding = ViewHomeContentBinding
+                .inflate(LayoutInflater.from(parent.context), parent, false)
+            return HomeContentViewHolder(binding)
         }
 
         override fun onBindViewHolder(holder: HomeContentViewHolder, position: Int) {
-
+            binding.textTitle.text = content[position].title
+            binding.textDescription.text = content[position].description
+            Glide.with(binding.root)
+                .load(content[position].imageUrl)
+                .centerCrop()
+                .into(binding.imageContent)
         }
 
         fun addItem(content: List<Content>) {

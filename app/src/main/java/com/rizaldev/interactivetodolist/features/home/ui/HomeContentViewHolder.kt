@@ -1,9 +1,7 @@
 package com.rizaldev.interactivetodolist.features.home.ui
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.rizaldev.interactivetodolist.databinding.ViewHomeContentBinding
 
-class HomeContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-
-}
+class HomeContentViewHolder(binding: ViewHomeContentBinding) :
+    RecyclerView.ViewHolder(binding.root)

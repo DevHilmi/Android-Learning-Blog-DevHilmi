@@ -13,11 +13,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 class HomeRepositoryImpl : HomeRepository {
 
     override fun getHomeContent(): Result<List<ContentEntity>> {
-        return Result.success(listOf(
-            ContentEntity("a", "a", "a", "a", "a"),
-            ContentEntity("a", "a", "a", "a", "a"),
-            ContentEntity("a", "a", "a", "a", "a"),
-            ContentEntity("a", "a", "a", "a", "a")
-        ))
+        return Result.success(
+            listOf(
+                ContentEntity(
+                    "Transforming Pull Request Format at DANA Indonesia",
+                    "Pull Request Review is a good thing to have on every software engineering company, it helps improving team knowledge and prevent bad code from going into the main code base of a project.",
+                    "https://picsum.photos/200/200",
+                    "a",
+                    "MEDIUM"
+                ),
+                ContentEntity("a", "a", "a", "a", "a"),
+                ContentEntity("a", "a", "a", "a", "a"),
+                ContentEntity("a", "a", "a", "a", "a")
+            )
+        )
     }
 }
