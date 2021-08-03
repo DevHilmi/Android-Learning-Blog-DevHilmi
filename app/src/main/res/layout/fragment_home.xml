@@ -19,7 +19,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="4dp"
-            android:text="Welcome"
+            android:text="@string/home_welcome"
+            android:textColor="@color/black"
             android:textSize="34sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +33,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="4dp"
-            android:text="To my Android Learning Blog"
+            android:text="@string/home_subtitle"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textWelcome" />
@@ -59,22 +60,22 @@
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="All" />
+                    android:text="@string/chips_all" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Android" />
+                    android:text="@string/chips_android" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Medium Blog" />
+                    android:text="@string/chips_medium" />
 
                 <com.google.android.material.chip.Chip
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Software Engineering" />
+                    android:text="@string/chips_software" />
             </com.google.android.material.chip.ChipGroup>
 
         </HorizontalScrollView>

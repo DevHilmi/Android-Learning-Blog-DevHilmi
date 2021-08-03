@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +21,7 @@
             android:id="@+id/textTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="italic"
             app:layout_constraintHorizontal_bias="0"

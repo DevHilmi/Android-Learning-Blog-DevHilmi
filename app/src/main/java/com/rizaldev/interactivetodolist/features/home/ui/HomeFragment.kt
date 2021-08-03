@@ -2,6 +2,7 @@ package com.rizaldev.interactivetodolist.features.home.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -74,6 +75,31 @@ class HomeFragment :
                 .load(content[position].imageUrl)
                 .centerCrop()
                 .into(binding.imageContent)
+            binding.root.setOnClickListener {
+                when (content[position].type) {
+                    MEDIUM -> {
+                        Toast.makeText(
+                            binding.root.context,
+                            "Medium Clicked",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    ANDROID -> {
+                        Toast.makeText(
+                            binding.root.context,
+                            "Android Clicked",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    SOFTWARE_ENGINEERING -> {
+                        Toast.makeText(
+                            binding.root.context,
+                            "Software Engineer Clicked",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
         }
 
         fun addItem(content: List<Content>) {
@@ -88,7 +114,11 @@ class HomeFragment :
         override fun getItemCount(): Int {
             return content.size
         }
+
+        companion object {
+            const val MEDIUM = "MEDIUM"
+            const val ANDROID = "ANDROID"
+            const val SOFTWARE_ENGINEERING = "SOFTWARE_ENGINEERING"
+        }
     }
-
-
 }
