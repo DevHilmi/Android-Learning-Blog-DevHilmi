@@ -11,14 +11,14 @@ class HomeViewModel : BaseViewModel<HomeIntent, HomeAction, HomeState>() {
 
     override fun intentToAction(intent: HomeIntent): HomeAction {
         return when (intent) {
-            is HomeIntent.LoadHomeContent -> HomeAction.homeContent
+            is HomeIntent.LoadHomeContent -> HomeAction.HomeContent
         }
     }
 
     override fun handleAction(action: HomeAction) {
         launchOnUI {
             when (action) {
-                is HomeAction.homeContent -> {
+                is HomeAction.HomeContent -> {
                     homeContentAction()
                 }
             }

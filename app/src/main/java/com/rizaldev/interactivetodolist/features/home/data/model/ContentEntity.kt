@@ -1,6 +1,6 @@
-package com.rizaldev.interactivetodolist.features.home.domain.model
+package com.rizaldev.interactivetodolist.features.home.data.model
 
-data class Content(
+data class ContentEntity(
     val title: String,
     val description: String,
     val imageUrl: String,

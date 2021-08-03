@@ -8,11 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rizaldev.interactivetodolist.R
 import com.rizaldev.interactivetodolist.common.base.BaseFragment
 import com.rizaldev.interactivetodolist.databinding.FragmentHomeBinding
+import com.rizaldev.interactivetodolist.features.home.domain.model.Content
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 class HomeFragment :
     BaseFragment<HomeIntent, HomeAction, HomeState, HomeViewModel, FragmentHomeBinding>(
         HomeViewModel::class.java
     ) {
+
+    private val adapter = HomeContentAdapter()
 
     override fun getViewModelImp(): HomeViewModel {
         val viewModel by viewModels<HomeViewModel>()
@@ -20,13 +25,9 @@ class HomeFragment :
     }
 
     override fun initUi() {
-        val mockList = listOf("Test", "Test2")
-        val adapter = HomeContentAdapter(mockList)
         val linearLayoutManager = LinearLayoutManager(context)
         binding.recyclerContent.layoutManager = linearLayoutManager
         binding.recyclerContent.adapter = adapter
-        adapter.notifyItemInserted(0)
-        binding.textWelcome.text = "ABCD"
     }
 
     override fun initData() {
@@ -43,7 +44,7 @@ class HomeFragment :
             }
 
             is HomeState.ContentData -> {
-                binding.textWelcome.text = state.data[0].description
+                adapter.addItem(state.data)
             }
 
             is HomeState.Exception -> {
@@ -55,8 +56,10 @@ class HomeFragment :
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentHomeBinding
         get() = FragmentHomeBinding::inflate
 
-    class HomeContentAdapter(private val dataset: List<String>) :
+    class HomeContentAdapter :
         RecyclerView.Adapter<HomeContentViewHolder>() {
+
+        val content = mutableListOf<Content>()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeContentViewHolder {
             val view = LayoutInflater.from(parent.context)
@@ -68,8 +71,17 @@ class HomeFragment :
 
         }
 
+        fun addItem(content: List<Content>) {
+            this.content.addAll(content)
+            val insertIndex = when {
+                content.isEmpty() -> 0
+                else -> content.size - 1
+            }
+            notifyItemInserted(insertIndex)
+        }
+
         override fun getItemCount(): Int {
-            return dataset.size * 10
+            return content.size
         }
     }
 
