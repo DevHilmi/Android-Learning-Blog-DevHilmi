@@ -5,13 +5,14 @@ import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.rizaldev.interactivetodolist.R
 import com.rizaldev.interactivetodolist.common.base.BaseActivity
 import com.rizaldev.interactivetodolist.databinding.ActivityMainBinding
 import com.rizaldev.interactivetodolist.features.home.ui.HomeFragment
 import com.rizaldev.interactivetodolist.features.settings.ui.SettingsFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity :
     BaseActivity<MainIntent, MainAction, MainState, MainViewModel, ActivityMainBinding>(
         MainViewModel::class.java

@@ -11,7 +11,11 @@ import com.rizaldev.interactivetodolist.common.base.BaseFragment
 import com.rizaldev.interactivetodolist.databinding.FragmentHomeBinding
 import com.rizaldev.interactivetodolist.databinding.ViewHomeContentBinding
 import com.rizaldev.interactivetodolist.features.home.domain.model.Content
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.WithFragmentBindings
 
+@WithFragmentBindings
+@AndroidEntryPoint
 class HomeFragment :
     BaseFragment<HomeIntent, HomeAction, HomeState, HomeViewModel, FragmentHomeBinding>(
         HomeViewModel::class.java
