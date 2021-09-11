@@ -1,4 +1,4 @@
-package com.rizaldev.interactivetodolist.features.home.ui
+package com.rizaldev.interactivetodolist.features.home.ui.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.rizaldev.interactivetodolist.databinding.ViewHomeContentBinding

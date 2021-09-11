@@ -3,11 +3,14 @@ package com.rizaldev.interactivetodolist.features.home.ui
 import androidx.lifecycle.viewModelScope
 import com.rizaldev.interactivetodolist.common.base.BaseViewModel
 import com.rizaldev.interactivetodolist.features.home.domain.GetHomeContent
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class HomeViewModel : BaseViewModel<HomeIntent, HomeAction, HomeState>() {
-
-    private val getHomeContent = GetHomeContent()
-    private val homeReducers = HomeReducers()
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val getHomeContent: GetHomeContent,
+    private val homeReducers: HomeReducers
+) : BaseViewModel<HomeIntent, HomeAction, HomeState>() {
 
     override fun intentToAction(intent: HomeIntent): HomeAction {
         return when (intent) {
@@ -28,7 +31,7 @@ class HomeViewModel : BaseViewModel<HomeIntent, HomeAction, HomeState>() {
     private fun homeContentAction() {
         mState.postValue(HomeState.Loading)
         getHomeContent.invoke(
-            GetHomeContent.NoParams(),
+            Unit,
             viewModelScope
         ) {
             mState.postValue(homeReducers.reduce(it, state.value))

@@ -8,7 +8,7 @@ abstract class UseCase<out Type, in Params> where Type : Any {
 
     operator fun invoke(
         params: Params,
-        scope: CoroutineScope = GlobalScope,
+        scope: CoroutineScope,
         onResult: (Type) -> Unit = {}
     ) {
         scope.launch(Dispatchers.Main) {
