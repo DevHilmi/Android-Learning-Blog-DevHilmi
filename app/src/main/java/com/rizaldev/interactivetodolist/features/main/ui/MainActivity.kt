@@ -42,27 +42,15 @@ class MainActivity :
     }
 
     override fun initData() {
-        dispatchIntent(MainIntent.LoadAllTodos)
+        // no implementation
     }
 
     override fun initEvent() {
-
+        // no implementation
     }
 
     override fun render(state: MainState) {
-        when (state) {
-            is MainState.Loading -> {
-
-            }
-
-            is MainState.ResultAllTodo -> {
-
-            }
-
-            is MainState.Exception -> {
-
-            }
-        }
+       // no implementation
     }
 
     class MainPagerAdapter(fragmentActivity: FragmentActivity) :
