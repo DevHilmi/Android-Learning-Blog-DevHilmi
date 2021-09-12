@@ -4,6 +4,7 @@ import com.rizaldev.interactivetodolist.features.home.data.model.ContentEntity
 import com.rizaldev.interactivetodolist.features.home.domain.model.Content
 
 fun ContentEntity.toContent() = Content(
+    id = id,
     title = title,
     description = description,
     imageUrl = imageUrl,

@@ -3,7 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_welcome">Welcome</string>
-    <string name="home_subtitle">To my Android Learning Blog</string>
+    <string name="home_subtitle">To the Android Learning Blog</string>
     <string name="chips_all">All</string>
     <string name="chips_android">Android</string>
     <string name="chips_medium">Medium Blog</string>

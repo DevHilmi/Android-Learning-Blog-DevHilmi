@@ -2,12 +2,12 @@ package com.rizaldev.interactivetodolist.features.home.ui
 
 import com.rizaldev.interactivetodolist.common.base.BaseResult
 import com.rizaldev.interactivetodolist.common.base.IReducer
-import com.rizaldev.interactivetodolist.features.home.domain.model.Content
+import com.rizaldev.interactivetodolist.features.home.ui.model.ContentModel
 
-class HomeReducers : IReducer<HomeState, List<Content>> {
+class HomeReducers : IReducer<HomeState, List<ContentModel>> {
 
     override fun reduce(
-        baseResult: BaseResult<List<Content>>,
+        baseResult: BaseResult<List<ContentModel>>,
         state: HomeState?
     ): HomeState {
         return when (baseResult) {
